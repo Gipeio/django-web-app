@@ -1,0 +1,10 @@
+<html>
+    <head><title>Merchex</title></head>
+    <h1>Nos {{ listings|length }} produits :</h1> 
+        
+    <ul>
+        {% for listing in listings %}
+        <li>{{ listing.title }}</li>
+        {% endfor %}
+    </ul>
+</html>
