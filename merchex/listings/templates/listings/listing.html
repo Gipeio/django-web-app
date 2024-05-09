@@ -1,5 +1,7 @@
-<html>
-    <head><title>Merchex</title></head>
+{% extends 'listings/base.html' %}
+
+{% block content %}
+
     <h1>Nos {{ listings|length }} produits :</h1> 
         
     <ul>
@@ -7,4 +9,5 @@
         <li>{{ listing.title }}</li>
         {% endfor %}
     </ul>
-</html>
+
+{% endblock %}
