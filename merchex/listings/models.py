@@ -36,3 +36,4 @@ class Listing(models.Model):
     sold = models.fields.BooleanField(default=False)
     year = models.fields.IntegerField(null=True, blank=True)
     type_item = models.fields.CharField(choices=Types.choices, max_length=5)
+    band = models.ForeignKey(Band, null=True, on_delete=models.SET_NULL)
