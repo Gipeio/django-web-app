@@ -18,10 +18,18 @@ from django.contrib import admin
 from django.urls import path
 from listings import views
 
+handler404 = 'listings.views.page_not_found'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', views.hello),
+    
+    path('bands/', views.band_list, name='bands'),
+    path('bands/<int:band_id>/', views.band_detail, name='band-detail'),
+    
     path('about-us/', views.about),
-    path('listings/', views.listings),
+    
+    path('listings/', views.listings, name='listings'),
+    path('listings/<int:listing_id>/', views.listing_detail, name='listing-detail'),
+    
     path('contact-us/', views.contact),
 ]
