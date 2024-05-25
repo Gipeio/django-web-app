@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.core.mail import send_mail
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from listings.models import Band,Listing
 from listings.forms import ContactUsForm
 from django.shortcuts import redirect  # ajoutez cet import
@@ -40,6 +40,7 @@ def contact(request):
             from_email=form.cleaned_data['email'],
             recipient_list=['admin@merchex.xyz'],
             )
+            return redirect('confirmation')
 
     else:
         form = ContactUsForm()
@@ -50,3 +51,6 @@ def contact(request):
 
 def page_not_found(request, exception):
     return render(request,'listings/page_not_found.html',status=404)
+
+def confirmation(request):
+    return render(request, 'listings/confirmation.html')
