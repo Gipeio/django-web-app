@@ -3,7 +3,6 @@ from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from listings.models import Band,Listing
 from listings.forms import ContactUsForm, BandForm, ListingForm
-from django.shortcuts import redirect  # ajoutez cet import
 
 def band_list(request):
 
@@ -122,3 +121,34 @@ def listing_update(request, id):
     return render(request,
                 'listings/listing_update.html',
                 {'form': form})
+
+
+def band_delete(request, id):
+    band = Band.objects.get(id=id)  # nécessaire pour GET et pour POST
+
+    if request.method == 'POST':
+        # supprimer le groupe de la base de données
+        band.delete()
+        # rediriger vers la liste des groupes
+        return redirect('bands')
+
+    # pas besoin de « else » ici. Si c'est une demande GET, continuez simplement
+
+    return render(request,
+        'listings/band_delete.html',
+        {'band': band})
+
+def listing_delete(request, id):
+    listing = Listing.objects.get(id=id)  # nécessaire pour GET et pour POST
+
+    if request.method == 'POST':
+        # supprimer le groupe de la base de données
+        listing.delete()
+        # rediriger vers la liste des groupes
+        return redirect('listings')
+
+    # pas besoin de « else » ici. Si c'est une demande GET, continuez simplement
+
+    return render(request,
+        'listings/listing_delete.html',
+        {'listing': listing})
