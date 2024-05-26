@@ -9,7 +9,11 @@
         <a href="{% url 'listing-create' %}">Créer un nouvel article</a>
 
         {% for listing in listings %}
-        <li><a href="{% url 'listing-detail' listing.id %}">{{ listing.title }}</a></li>
+        <li>
+            <a href="{% url 'listing-detail' listing.id %}">{{ listing.title }}</a>
+            <a href="{% url 'listing-update' listing.id %}">[Editer]</a>
+
+        </li>
         {% endfor %}
     </ul>
 
